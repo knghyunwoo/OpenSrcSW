@@ -1,10 +1,9 @@
-package com.company;
+package makeCollection;
 
 import org.jsoup.Jsoup;
 import org.jsoup.select.Elements;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
-
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import java.io.File;
@@ -15,9 +14,10 @@ import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 import java.io.FileOutputStream;
 
-public class Main {
-    public static void main (String[] args) {
-
+public class makeCollection {
+    //public static void main (String[] args) {
+    public static void makeCollection(String htmlPath) {
+//        String htmlPath = args[0];
         try {
             // XML 파일 만들기
             DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
@@ -25,12 +25,11 @@ public class Main {
 
             Document doc = docBuilder.newDocument();
             doc.setXmlStandalone(true); //standalone="no" 를 없애준다.
-
             Element docs = doc.createElement("docs");
             doc.appendChild(docs);
 
             // HTML 파일 가져오기
-            File directoryPath = new File("C:\\\\Users\\\\s_knghyunwoo\\\\Desktop\\\\21년 1학기\\\\오픈소스\\\\2주차\\\\SimpleIR\\\\html");
+            File directoryPath = new File(htmlPath);      //"C:\\Users\\s_knghyunwoo\\Desktop\\21년 1학기\\오픈소스\\SimpleIR\\data");
             File filesList[] = directoryPath.listFiles();
             int id = 0;
 
@@ -66,7 +65,7 @@ public class Main {
                 transformer.setOutputProperty(OutputKeys.DOCTYPE_PUBLIC, "yes"); //doc.setXmlStandalone(true); 했을때 붙어서 출력되는부분 개행
 
                 DOMSource source = new DOMSource(doc);
-                StreamResult result = new StreamResult(new FileOutputStream(new File("C:\\Users\\s_knghyunwoo\\Desktop\\21년 1학기\\오픈소스\\2주차\\SimpleIR\\xml\\food.xml")));
+                StreamResult result = new StreamResult(new FileOutputStream(new File("C:\\Users\\s_knghyunwoo\\Desktop\\21년 1학기\\오픈소스\\SimpleIR\\collection.xml")));
 
                 transformer.transform(source, result);
                 id++;
