@@ -1,5 +1,3 @@
-package makeCollection;
-
 import org.jsoup.Jsoup;
 import org.jsoup.select.Elements;
 import org.w3c.dom.Document;
