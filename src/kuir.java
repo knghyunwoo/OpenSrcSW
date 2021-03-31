@@ -3,19 +3,24 @@ public class kuir {
 //        System.out.println(args[0]);
 //        System.out.println(args[1]);
         try {
-            //makeCollection 실행하는데 args[1]를 넘겨주면서 실행
+            //makeCollection 실행하는데 args[1]로 html 폴더경로를 넘겨주면서 실행
             if (args[0].equals("-c")) {
-//                System.out.println("sdf");
                 makeCollection.makeCollection(args[1]);
-            } else if (args[0].equals("-k")) {
-            //makeKeyword 실행하는데 args[1]를 넘겨주면서 실행
+            }
+            //makeKeyword 실행하는데 args[1]로 collextion.xml 경로를 넘겨주면서 실행
+            else if (args[0].equals("-k")) {
                 makeKeyword.makeKeyword(args[1]);
+            }
+            //indexer 실행하는데 args[1]로 index.xml 경로를 넘겨주면서 실행
+            else if (args[0].equals("-i")){
+                indexer.indexer(args[1]);
+                // index.post 확인하는 코드
+//                indexer.PostOpen();
             }
             else {
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
-//        System.out.println("asfdasdf");
     }
 }

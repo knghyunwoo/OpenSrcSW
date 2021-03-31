@@ -43,6 +43,7 @@ public class makeKeyword {
                 Node node = nodeList.item(i);
                 Element element = (Element)node;
                 String data = element.getElementsByTagName("body").item(0).getTextContent();
+                data = data.replace("," , "");
                 KeywordExtractor ke = new KeywordExtractor();
                 KeywordList kl = ke.extractKeyword(data, true);
                 String count_data = new String();
