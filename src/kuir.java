@@ -13,9 +13,12 @@ public class kuir {
             }
             //indexer 실행하는데 args[1]로 index.xml 경로를 넘겨주면서 실행
             else if (args[0].equals("-i")){
-                indexer.indexer(args[1]);
+//                indexer.indexer(args[1]);
                 // index.post 확인하는 코드
-//                indexer.PostOpen();
+                indexer.PostOpen();
+            }
+            else if(args[0].equals("-s")&&args[2].equals("-q")) {
+                searcher.search(args[1], args[3]);
             }
             else {
             }
