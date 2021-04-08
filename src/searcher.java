@@ -63,8 +63,8 @@ public class searcher {
         //정렬
         List<Integer> keySetList = new ArrayList<>(similarFile.keySet());
         Collections.sort(keySetList, (a1, a2) -> (similarFile.get(a2).compareTo(similarFile.get(a1))));
-        for (Integer key : keySetList) {
-            System.out.println("key: " + key + ", value: " + similarFile.get(key));
+        for (Integer key : keySetList) {  
+            System.out.println("key: " + key + ", value: " + String.format("%.2f", similarFile.get(key)));
         }
         System.out.println();
         for (int i = 0; i < 3; i++) {
