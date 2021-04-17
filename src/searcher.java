@@ -25,6 +25,7 @@ public class searcher {
         int fileNum = 0;
         ArrayList<String> docTitle = new ArrayList<>();
         HashMap<Integer, Double> similarFile = new HashMap<>();
+        HashMap<Integer, Double> cosineSimilarFile = new HashMap<>();
         HashMap<String, Integer> queryMap = new HashMap<>();
 
         DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
@@ -57,18 +58,32 @@ public class searcher {
 
         //문서 별로 유사도 계산
         for (int i = 0; i < fileNum; i++) {
-            similarFile.put(i, calcSim(i, queryMap, indexPostMap));
+            similarFile.put(i, InnerProduct(i, queryMap, indexPostMap));  // InnerProduct 계산해서 넣기
+            cosineSimilarFile.put(i, calcSim(i, queryMap, indexPostMap)); // calcSim (Cosine Similarity) 계산해서 넣기
         }
 
-        //정렬
+        // InnerProduct 정렬
         List<Integer> keySetList = new ArrayList<>(similarFile.keySet());
         Collections.sort(keySetList, (a1, a2) -> (similarFile.get(a2).compareTo(similarFile.get(a1))));
+        System.out.println("InnerProduct Result");
         for (Integer key : keySetList) {
             System.out.println("key: " + key + ", value: " + String.format("%.2f", similarFile.get(key)));
         }
         System.out.println();
         for (int i = 0; i < 3; i++) {
             System.out.println(i + 1 + "번째 문서: " + docTitle.get(keySetList.get(i)));
+        }
+
+        // Cosine Similarity 정렬
+        List<Integer> keySetList2 = new ArrayList<>(cosineSimilarFile.keySet());
+        Collections.sort(keySetList2, (a1, a2) -> (cosineSimilarFile.get(a2).compareTo(cosineSimilarFile.get(a1))));
+        System.out.println("Cosine Similarity Result");
+        for (Integer key : keySetList2) {
+            System.out.println("key: " + key + ", value: " + String.format("%.2f", cosineSimilarFile.get(key)));
+        }
+        System.out.println();
+        for (int i = 0; i < 3; i++) {
+            System.out.println(i + 1 + "번째 문서: " + docTitle.get(keySetList2.get(i)));
         }
     }
 
@@ -98,8 +113,40 @@ public class searcher {
     }
 
     private static double calcSim(int i, HashMap<String, Integer> queryMap, HashMap<String, String> indexPostMap) {
-        double similarity = 0;
-        return similarity;
+        double cosineSimilarity = 0;
+        double innerProduct = InnerProduct(i, queryMap, indexPostMap);
+        double dividor1 = 0, dividor2 =0;
+        Iterator<String> keys = queryMap.keySet().iterator();
+        queryMap.keySet();
+        while (keys.hasNext()) {
+            String key = keys.next();
+            if (indexPostMap.containsKey(key)) {
+                String s = String.valueOf(indexPostMap.get(key));
+                s = s.replace("[", "");
+                s = s.replace("]", "");
+                s = s.replace(",", "");
+                String[] split = s.split(" ");
+
+                for (int index = 0; index < split.length; index += 2) {
+                    if (Integer.parseInt(split[index]) == i) {
+                        dividor1 += Math.pow(queryMap.get(key),2);
+                        dividor2 += Math.pow(Double.parseDouble(split[index + 1]),2);
+                        break;
+                    }
+                }
+            }
+        }
+        // 결과값이 0일 경우 예외처리
+        if (dividor1 == 0 || dividor2 == 0){
+            dividor1 = 1;
+            dividor2 = 2;
+            innerProduct = 0;
+        }
+        dividor1 = Math.sqrt(dividor1);
+        dividor2 = Math.sqrt(dividor2);
+        cosineSimilarity += innerProduct / (dividor1 * dividor2);
+
+        return cosineSimilarity;
     }
 
 }
