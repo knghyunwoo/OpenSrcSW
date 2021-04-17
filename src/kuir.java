@@ -15,7 +15,10 @@ public class kuir {
             else if (args[0].equals("-i")){
                 indexer.indexer(args[1]);
                 // index.post 확인하는 코드
-//                indexer.PostOpen();
+                indexer.PostOpen();
+            }
+            else if(args[0].equals("-s")&&args[2].equals("-q")) {
+                searcher.search(args[1], args[3]);
             }
             else {
             }

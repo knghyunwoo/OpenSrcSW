@@ -73,6 +73,30 @@ public class searcher {
     }
 
 
+    private static double InnerProduct(int i, HashMap<String, Integer> queryMap, HashMap<String, String> indexPostMap) {
+        double similarity = 0;
+        Iterator<String> keys = queryMap.keySet().iterator();
+        queryMap.keySet();
+        while (keys.hasNext()) {
+            String key = keys.next();
+            if (indexPostMap.containsKey(key)) {
+                String s = String.valueOf(indexPostMap.get(key));
+                s = s.replace("[", "");
+                s = s.replace("]", "");
+                s = s.replace(",", "");
+                String[] split = s.split(" ");
+
+                for (int index = 0; index < split.length; index += 2) {
+                    if (Integer.parseInt(split[index]) == i) {
+                        similarity += queryMap.get(key) * Double.parseDouble(split[index + 1]);
+                        break;
+                    }
+                }
+            }
+        }
+        return similarity;
+    }
+
     private static double calcSim(int i, HashMap<String, Integer> queryMap, HashMap<String, String> indexPostMap) {
         double similarity = 0;
         return similarity;

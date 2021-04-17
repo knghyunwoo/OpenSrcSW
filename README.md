@@ -42,6 +42,15 @@ index.xml에 있는 데이터로 키워드 별 문서 당 가중치를 계산하
 - java kuir -i [./index.xml]
 ##### post파일 확인방법
 - kuir파일에 `indexer.PostOpen();` 주석해제
-
+<br/><br/>
 
  
+## Week05 04/01
+### searcher
+- index.post를 가져와 query를 입력하여 문서 간의 유사도를 계산하여 입력한 query와 가장 유사한 문서 중 상위 3개의 문서의 title을 출력
+- 만약 유사도가 동일시 id가 빠른순으로 출력
+##### 결과물
+- 따로 없음
+##### 사용법
+- java kuir -s [./index.post] -q "쿼리문"
+<br/><br/>
