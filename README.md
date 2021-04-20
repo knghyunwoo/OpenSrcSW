@@ -55,7 +55,7 @@ index.xml에 있는 데이터로 키워드 별 문서 당 가중치를 계산하
 - java kuir -s [./index.post] -q "쿼리문"
 <br/><br/>
 
-## Week06 04/08
+## Week06, Week07 04/08,15
 ### searcher
 - 기존에 feature 브랜치에서 했던 calcSim 함수를 InnerProduct 변경후 master 브랜치에서 calcSim 함수 생성
 - 기존에는 저번주는 내적곱으로 계산, 이번주는 Cosine Similarity 로 계산
