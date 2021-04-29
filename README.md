@@ -55,6 +55,7 @@ index.xml에 있는 데이터로 키워드 별 문서 당 가중치를 계산하
 - java kuir -s [./index.post] -q "쿼리문"
 <br/><br/>
 
+
 ## Week06, Week07 04/08,15
 ### searcher
 - 기존에 feature 브랜치에서 했던 calcSim 함수를 InnerProduct 변경후 master 브랜치에서 calcSim 함수 생성
@@ -65,4 +66,9 @@ index.xml에 있는 데이터로 키워드 별 문서 당 가중치를 계산하
 - 따로 없음
 ##### 사용법
 - java kuir -s [./index.post] -q "쿼리문"
+<br/><br/>
+
+
+## Week09 04/29
+### Python 예제문제 2개
 <br/><br/>
